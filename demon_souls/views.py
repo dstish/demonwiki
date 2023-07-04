@@ -41,7 +41,6 @@ def home(request):
         return redirect('home')
     return render(request, 'home.html')
 
-
 @login_required
 def create_item(request):
     if request.method == 'POST':

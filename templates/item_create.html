@@ -4,6 +4,7 @@
 <head>
   <title>Fandom Wiki on Demon's Souls</title>
   <link rel="stylesheet" type="text/css" href="{% static 'css/create_item.css' %}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
     html, body {
       height: 100%;
@@ -30,6 +31,7 @@
   </nav>
   {% if user.is_authenticated %}
    <div class="user-info">
+         <a href="{% url 'create_item' %}"><i class="fas fa-edit"></i> Create </a>
          <p class="user-greeting"><i class="fas fa-user"></i> Hello, {{ user.username }}!</p>
          <a class="logout-bt" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
    </div>
