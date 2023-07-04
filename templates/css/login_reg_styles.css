@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+
+/* Стили для страницы входа */
+.login-container {
+  background-image: url('res/wallpaperflare.com_wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-form {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.login-button {
+  background-color: #3f51b5;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+}
+input[type="text"],
+input[type="password"],
+textarea {
+  font-size: 16px;
+}
+
+/* Стили для страницы регистрации */
+.register-container {
+  background-image: url('res/wallpaperflare.com_wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.register-form {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.register-button {
+  background-color: #3f51b5;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+  font-size: 16px;
+}
+
+a {
+  color: inherit; /* Use the parent's color or specify a custom color */
+  text-decoration: none; /* Remove underline */
+}

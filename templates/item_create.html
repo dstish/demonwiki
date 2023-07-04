@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fandom Wiki on Demon's Souls</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/create_item.css' %}">
+    <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+   </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
+            <li><a href="{% url 'armor_category' %}">Armor</a></li>
+            <li><a href="{% url 'ring_category' %}">Rings</a></li>
+            <li><a href="{% url 'magic_category' %}">Magic</a></li>
+            <li><a href="{% url 'character_category' %}">Characters</a></li>
+            <li><a href="{% url 'boss_category' %}">Bosses</a></li>
+            <li><a href="{% url 'location_category' %}">Locations</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% if user.is_authenticated %}
+   <div class="user-info">
+         <p class="user-greeting"><i class="fas fa-user"></i> Hello, {{ user.username }}!</p>
+         <a class="logout-bt" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+   </div>
+{% else %}
+   <li><a href="{% url 'login' %}">Login</a></li>
+   <li><a href="{% url 'register' %}">Register</a></li>
+{% endif %}
+</header>
+
+  <div class="create-item-container">
+    <div class="create-item-form">
+      <h1>Create Item</h1>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ form.media }}
+        <button type="submit" class="create-item-button">Create</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

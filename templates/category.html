@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fandom Wiki on Demon's Souls - {{ category }} Category</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
+      <li><a href="{% url 'armor_category' %}">Armor</a></li>
+      <li><a href="{% url 'ring_category' %}">Rings</a></li>
+      <li><a href="{% url 'magic_category' %}">Magic</a></li>
+      <li><a href="{% url 'character_category' %}">Characters</a></li>
+      <li><a href="{% url 'boss_category' %}">Bosses</a></li>
+      <li><a href="{% url 'location_category' %}">Locations</a></li>
+    </ul>
+    </nav>
+    {% if user.is_authenticated %}
+      <div class="user-info">
+        <p class="user-greeting">Hello, {{ user.username }}! |</p>
+        <a class="logout-bt" href="{% url 'logout' %}">Logout</a>
+      </div>
+    {% endif %}
+  </header>
+
+<h1>{{ category|capfirst }} Category</h1>
+
+<main>
+  {% for item in items %}
+  <a href="{% url 'item_detail' item_id=item.item_id %}" class="item-link">
+    <div class="item">
+      <img src="{{ item.image.url }}" alt="{{ item.name }}">
+      <h3>{{ item.name }}</h3>
+    </div>
+  </a>
+  {% empty %}
+  <p>No items available in this category.</p>
+  {% endfor %}
+</main>
+
+  <footer>
+    <p>&copy; 2023 Demon's Souls Fandom Wiki. All rights reserved.</p>
+  </footer>
+</body>
+</html>

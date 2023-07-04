@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fandom Wiki on Demon's Souls</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login_reg_styles.css' %}">
+</head>
+<body>
+  <header>
+    <h1>Fandom Wiki on Demon's Souls</h1>
+    <!-- Здесь вы можете добавить логотип, навигацию или другие элементы шапки -->
+  </header>
+
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <footer>
+    <!-- Здесь вы можете добавить футер сайта с информацией об авторских правах и другими деталями -->
+  </footer>
+</body>
+</html>
