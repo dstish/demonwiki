@@ -1,67 +1,96 @@
-{% load static %}
+<!-- {% load static %} -->
 
 <!DOCTYPE html>
 <html>
 <head>
   <title>Fandom Wiki on Demon's Souls - Item Detail</title>
   <link rel="stylesheet" type="text/css" href="{% static 'css/item_detail.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
     html, body {
       height: 100%;
+      width: 100%;
       margin: 0;
       padding: 0;
     }
-   </style>
+
+  </style>
 </head>
 <body>
 <header>
   <nav>
     <ul>
-        {% if user.is_authenticated %}
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
-            <li><a href="{% url 'armor_category' %}">Armor</a></li>
-            <li><a href="{% url 'ring_category' %}">Rings</a></li>
-            <li><a href="{% url 'magic_category' %}">Magic</a></li>
-            <li><a href="{% url 'character_category' %}">Characters</a></li>
-            <li><a href="{% url 'boss_category' %}">Bosses</a></li>
-            <li><a href="{% url 'location_category' %}">Locations</a></li>
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
+        <li><a href="{% url 'armor_category' %}">Armor</a></li>
+        <li><a href="{% url 'ring_category' %}">Rings</a></li>
+        <li><a href="{% url 'magic_category' %}">Magic</a></li>
+        <li><a href="{% url 'character_category' %}">Characters</a></li>
+        <li><a href="{% url 'boss_category' %}">Bosses</a></li>
+        <li><a href="{% url 'location_category' %}">Locations</a></li>
       {% endif %}
     </ul>
   </nav>
   {% if user.is_authenticated %}
-   <div class="user-info">
-         <a href="{% url 'create_item' %}"><i class="fas fa-edit"></i> Create </a>
-         <p class="user-greeting"><i class="fas fa-user"></i> Hello, {{ user.username }}!</p>
-         <a class="logout-bt" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
-   </div>
-{% else %}
-   <li><a href="{% url 'login' %}">Login</a></li>
-   <li><a href="{% url 'register' %}">Register</a></li>
-{% endif %}
-
+  <div class="user-info">
+    <a href="{% url 'create_item' %}"><i class="fas fa-edit"></i> Create </a>
+    <p class="user-greeting"><i class="fas fa-user"></i> Hello, {{ user.username }}!</p>
+    <a class="logout-bt" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+  {% else %}
+    <ul>
+      <li><a href="{% url 'login' %}">Login</a></li>
+      <li><a href="{% url 'register' %}">Register</a></li>
+    </ul>
+  {% endif %}
 </header>
 
-  <main>
-    <div class="container">
-      <div class="item">
-<div class="item-details">
-  <h1>{{ item.name|upper }}</h1>
-  <p><strong>Category:</strong> {{ item.category }}</p>
-  <p><strong>Author:</strong> {{ author_username }}</p>
-  <p>{{ item.description | safe }}</p>
-</div>
-        <div class="item-image big-image">
-  <img src="{{ item.image.url }}" alt="{{ item.name }}">
-        </div>
-        </div>
+<main>
+  <div class="container">
+    <div class="item">
+      <div class="item-details">
+        <h1>{{ item.name|upper }}</h1>
+        <p><strong>Category:</strong> {{ item.category }}</p>
+        <p><strong>Author:</strong> {{ author_username }}</p>
+        <p>{{ item.description | safe }}</p>
+      </div>
+      <div class="item-image big-image">
+        <img src="{{ item.image.url }}" alt="{{ item.name }}">
       </div>
     </div>
-  </main>
 
-  <footer>
-    <p>&copy; 2023 Demon's Souls Fandom Wiki. All rights reserved. This website was created by Daniil Pokryshkin</p>
-  </footer>
+    <div class="comments">
+      <h2>Comments</h2>
+      <ul>
+        {% for comment in item.comments.all %}
+          <li>
+            <div class="comment-text">{{ comment.text }}</div>
+            <div class="comment-info">
+              <span class="comment-author">{{ comment.author.username }}</span>
+              <span class="comment-time">{{ comment.created_at|date:"F d, Y H:i" }}</span>
+            </div>
+          </li>
+        {% empty %}
+          <li>No comments yet.</li>
+        {% endfor %}
+      </ul>
+      
+      {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'add_comment' item_id=item.item_id %}">
+          {% csrf_token %}
+          <textarea name="text" placeholder="Leave a comment"></textarea>
+          <button type="submit">Submit</button>
+        </form>
+      {% else %}
+        <p>Please <a href="{% url 'login' %}">login</a> to leave a comment.</p>
+      {% endif %}
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2023 Demon's Souls Fandom Wiki. All rights reserved. This website was created by Daniil Pokryshkin</p>
+</footer>
 </body>
 </html>
