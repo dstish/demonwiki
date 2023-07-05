@@ -1,8 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, UserManager
 
+from django.contrib.auth import get_user_model
+from .item_models import Item
 
-from django.contrib.auth.models import UserManager
+User = get_user_model()
+
 
 class CustomUserManager(UserManager):
     def create_user(self, username, password=None, **extra_fields):
@@ -21,7 +24,6 @@ class CustomUserManager(UserManager):
             raise ValueError('Superuser must have is_admin=True.')
 
         return self.create_user(username, password, **extra_fields)
-
 
 
 class CustomUser(AbstractBaseUser):
@@ -45,3 +47,14 @@ class CustomUser(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin
+
+
+class Comment(models.Model):
+    item = models.ForeignKey(
+        Item, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Comment by {self.user.username} on {self.item.name}'
