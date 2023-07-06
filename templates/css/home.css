@@ -8,6 +8,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
+  position: relative;
 }
 
 header {
@@ -17,6 +18,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 nav ul {
@@ -116,4 +118,13 @@ a {
 
 .log a:nth-child(1){
   margin-right: 5px;
+}
+.title {
+  display: block;
+  margin: 0 auto;
+}
+.not-items {
+  position: absolute;
+  top: 50%;
+  right: 43%;
 }
