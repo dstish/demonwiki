@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 * {
   box-sizing: border-box;
 }
+
 body {
   font-family: 'Roboto', sans-serif;
   min-height: 100vh;
@@ -77,52 +79,65 @@ footer {
 }
 
 a {
-  color: inherit; /* Use the parent's color or specify a custom color */
-  text-decoration: none; /* Remove underline */
+  color: inherit;
+  /* Use the parent's color or specify a custom color */
+  text-decoration: none;
+  /* Remove underline */
 }
 
 .main {
   flex: none;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 20px; /* Отступ между карточками */
-  grid-auto-rows: 1fr; /* Задаем равный вертикальный отступ */
+  grid-gap: 20px;
+  /* Отступ между карточками */
+  grid-auto-rows: 1fr;
+  /* Задаем равный вертикальный отступ */
 }
 
 .list-item {
   width: 150px;
   margin-bottom: 20px;
   display: flex;
-  flex-direction: column; /* Расположение элементов в столбец */
-  justify-content: flex-start; /* Выравнивание элементов в начале столбца */
+  flex-direction: column;
+  /* Расположение элементов в столбец */
+  justify-content: flex-start;
+  /* Выравнивание элементов в начале столбца */
 }
 
 .image-container {
   display: flex;
   justify-content: center;
-  flex-grow: 1; /* Захват оставшегося пространства */
+  flex-grow: 1;
+  /* Захват оставшегося пространства */
 }
 
 .item-link {
   display: flex;
-  flex-direction: column; /* Расположение элементов в столбец */
-  align-items: center; /* Выравнивание элементов по центру */
-  text-align: center; /* Выравнивание текста по центру */
+  flex-direction: column;
+  /* Расположение элементов в столбец */
+  align-items: center;
+  /* Выравнивание элементов по центру */
+  text-align: center;
+  /* Выравнивание текста по центру */
   padding: 10px;
 }
 
 .image-item {
   max-width: 100%;
-  max-height: 100%; /* Добавил максимальную высоту */
+  max-height: 100%;
+  /* Добавил максимальную высоту */
 }
 
-.log a:nth-child(1){
+.log a:nth-child(1) {
   margin-right: 5px;
 }
+
 .title {
   display: block;
   margin: 0 auto;
 }
+
 .not-items {
   position: absolute;
   top: 50%;

@@ -1,3 +1,4 @@
+from audioop import reverse
 from django.contrib.auth import get_user_model
 from django.db import models
 import os
@@ -19,7 +20,6 @@ class Item(models.Model):
         ('boss', 'Boss'),
         ('location', 'Location'),
     ]
-
     item_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -38,6 +38,10 @@ class Comment(models.Model):
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    is_banned = models.BooleanField(default=False)
 
     def __str__(self):
         return f'Comment by {self.author.username} on {self.item.name}'
+
+    def delete_comment_url(self):
+        return reverse('delete_comment', args=[self.id])

@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +26,7 @@
          <p class="user-greeting"><i class="fas fa-user"></i> Hello, {{ user.username }}!</p>
          <a class="logout-bt" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
    </div>
-{% else %}
+   {% else %}
    <div class="log">
     <a href="{% url 'login' %}">Login</a>
     <a href="{% url 'register' %}">Register</a>
@@ -38,13 +37,12 @@
   <main class="main">
     {% for item in items %}
       <div class="list-item">
-        <a href="{% url 'item_detail' item_id=item.item_id %}" class="item-link">
-          <div class="image-container">
-            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="image-item">
-          </div>
+        <a href="{% url 'item_detail' name=item.name %}" class="item-link">
+        <div class="item">
+          <img src="{{ item.image.url }}" alt="{{ item.name }}">
           <h3>{{ item.name }}</h3>
-        </a>
-      </div>
+        </div>
+      </a>
     {% empty %}
       <p class="not-items">No items available in this category.</p>
     {% endfor %}
