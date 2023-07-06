@@ -27,24 +27,25 @@
          <p class="user-greeting"><i class="fas fa-user"></i> Hello, {{ user.username }}!</p>
          <a class="logout-bt" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
    </div>
-{% else %}
-   <li><a href="{% url 'login' %}">Login</a></li>
-   <li><a href="{% url 'register' %}">Register</a></li>
+   {% else %}
+   <div class="log">
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'register' %}">Register</a>
+   </div>
 {% endif %}
   </header>
-
-  <h1>{{ category|capfirst }} Category</h1>
-
-  <main>
+  <h1 class="title">{{ category|capfirst }} Category</h1>
+  <main class="main">
     {% for item in items %}
-      <a href="{% url 'item_detail' name=item.name %}" class="item-link">
+      <div class="list-item">
+        <a href="{% url 'item_detail' name=item.name %}" class="item-link">
         <div class="item">
           <img src="{{ item.image.url }}" alt="{{ item.name }}">
           <h3>{{ item.name }}</h3>
         </div>
       </a>
     {% empty %}
-      <p>No items available in this category.</p>
+      <p class="not-items">No items available in this category.</p>
     {% endfor %}
   </main>
 

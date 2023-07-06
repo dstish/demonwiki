@@ -29,9 +29,11 @@
          <p class="user-greeting"><i class="fas fa-user"></i> Hello, {{ user.username }}!</p>
          <a class="logout-bt" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
    </div>
-{% else %}
-   <li><a href="{% url 'login' %}">Login</a></li>
-   <li><a href="{% url 'register' %}">Register</a></li>
+   {% else %}
+   <div class="log">
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'register' %}">Register</a>
+   </div>
 {% endif %}
 
 </header>
