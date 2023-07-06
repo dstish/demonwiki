@@ -32,17 +32,90 @@
    <li><a href="{% url 'register' %}">Register</a></li>
 {% endif %}
   </header>
-
   <h1>{{ category|capfirst }} Category</h1>
-
-  <main>
+  <main class="main">
     {% for item in items %}
-      <a href="{% url 'item_detail' name=item.name %}" class="item-link">
-        <div class="item">
-          <img src="{{ item.image.url }}" alt="{{ item.name }}">
+      <div class="list-item">
+        <a href="#" class="item-link">
+          <div class="image-container">
+            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
+          </div>
           <h3>{{ item.name }}</h3>
-        </div>
-      </a>
+        </a>
+      </div>
+
+      <div class="list-item">
+        <a href="#" class="item-link">
+          <div class="image-container">
+            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
+          </div>
+          <h3>{{ item.name }}</h3>
+        </a>
+      </div>
+      <div class="list-item">
+        <a href="#" class="item-link">
+          <div class="image-container">
+            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
+          </div>
+          <h3>{{ item.name }}</h3>
+        </a>
+      </div>
+      <div class="list-item">
+        <a href="#" class="item-link">
+          <div class="image-container">
+            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
+          </div>
+          <h3>{{ item.name }}</h3>
+        </a>
+      </div>
+      <div class="list-item">
+        <a href="#" class="item-link">
+          <div class="image-container">
+            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
+          </div>
+          <h3>{{ item.name }}</h3>
+        </a>
+      </div>
+      <div class="list-item">
+        <a href="#" class="item-link">
+          <div class="image-container">
+            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
+          </div>
+          <h3>{{ item.name }}</h3>
+        </a>
+      </div>
+      <div class="list-item">
+        <a href="#" class="item-link">
+          <div class="image-container">
+            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
+          </div>
+          <h3>{{ item.name }}</h3>
+        </a>
+      </div>
+      <div class="list-item">
+        <a href="#" class="item-link">
+          <div class="image-container">
+            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
+          </div>
+          <h3>{{ item.name }}</h3>
+        </a>
+      </div>
+      <div class="list-item">
+        <a href="#" class="item-link">
+          <div class="image-container">
+            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
+          </div>
+          <h3>{{ item.name }}</h3>
+        </a>
+      </div>
+      <div class="list-item">
+        <a href="#" class="item-link">
+          <div class="image-container">
+            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
+          </div>
+          <h3>{{ item.name }}</h3>
+        </a>
+      </div>
     {% empty %}
       <p>No items available in this category.</p>
     {% endfor %}
