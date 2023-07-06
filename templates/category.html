@@ -37,7 +37,7 @@
 
   <main>
     {% for item in items %}
-      <a href="{% url 'item_detail' item_id=item.item_id %}" class="item-link">
+      <a href="{% url 'item_detail' name=item.name %}" class="item-link">
         <div class="item">
           <img src="{{ item.image.url }}" alt="{{ item.name }}">
           <h3>{{ item.name }}</h3>
