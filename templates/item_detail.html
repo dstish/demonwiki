@@ -73,31 +73,52 @@
       <h2>Comments</h2>
       <ul>
         {% for comment in item.comments.all %}
-          
-            <div class="comment-info">
+          <div class="comment-info">
               <span class="comment-author">{{ comment.author.username }}</span>
               <span class="comment-date">{{ comment.created_at }}</span>
-            </div>
-            <div class="comment-text">{{ comment.text }}</div>
-            {% if user.is_authenticated and user == comment.author%}
-              <form method="POST" action="{% url 'delete_comment' comment_id=comment.id %}">
-                {% csrf_token %}
-                <button type="submit">Delete</button>
-              </form>
-            {% endif %}
-          
-        {% empty %}
-          No comments yet.
-        {% endfor %}
+              <p class="comment-text">{{ comment.text }}</p>
+              {% if user.is_authenticated and user.is_admin %}
+                  <form method="POST" action="{% url 'ban_user' comment_id=comment.id %}">
+                      {% csrf_token %}
+                      <button type="submit">Ban User</button>
+                  </form>
+                  <form method="POST" action="{% url 'delete_comment' comment_id=comment.id %}">
+                      {% csrf_token %}
+                      <button type="submit">Delete</button>
+                  </form>
+              {% endif %}
+              {% if user.is_authenticated and user == comment.author %}
+                  <form method="POST" action="{% url 'delete_comment' comment_id=comment.id %}">
+                      {% csrf_token %}
+                      <button type="submit">Delete</button>
+                  </form>
+              {% endif %}
+          </div>
+      {% empty %}
+          <p>No comments yet.</p>
+      {% endfor %}
       </ul>    
       {% if user.is_authenticated %}
-        <form method="POST" action="{% url 'add_comment' item_id=item.item_id %}">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <button type="submit">Submit</button>
-        </form>
+          {% if user.is_active %}
+              <form method="POST" action="{% url 'add_comment' item_id=item.item_id %}">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <button type="submit">Submit</button>
+              </form>
+          {% endif %}
       {% else %}
-        <p>Please <a href="{% url 'login' %}">login</a> to leave a comment.</p>
+          <p>Please <a href="{% url 'login' %}">login</a> to leave a comment.</p>
+      {% endif %}
+      
+      {% if user.is_authenticated %}
+          {% if user.is_active %}
+              <div class="user-info">
+
+              </div>
+          {% endif %}
+      {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'register' %}">Register</a></li>
       {% endif %}
     </div>
   </div>

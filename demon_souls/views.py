@@ -44,41 +44,61 @@ def home(request):
 
 
 @login_required
+def ban_user(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    if request.user.is_admin:
+        comment.author.is_active = False
+        comment.author.save()
+        Comment.objects.filter(author=comment.author).delete()
+
+    return redirect('item_detail', name=comment.item.name)
+
+
+@login_required
 def create_item(request):
+    if not request.user.is_active:
+        return redirect('home')
+
     if request.method == 'POST':
         form = ItemForm(request.POST, request.FILES)
         if form.is_valid():
             item = form.save(commit=False)
             item.author = request.user
             item.save()
-            return redirect('item_detail', name=item.name)
+            return redirect('home')
     else:
         form = ItemForm()
 
-    return render(request, 'item_create.html', {'form': form})
+    return render(request, 'create_item.html', {'form': form})
 
 
 @login_required
 def add_comment(request, item_id):
+    item = get_object_or_404(Item, item_id=item_id)
+
+    if not request.user.is_active:
+        return redirect('item_detail', name=item.name)
+
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.item = Item.objects.get(pk=item_id)
+            comment.item = item
             comment.author = request.user
             comment.save()
-            return redirect('item_detail', name=comment.item.name)
+            return redirect('item_detail', name=item.name)
     else:
         form = CommentForm()
 
-    return redirect('item_detail', name=comment.item.name)
+    return render(request, 'add_comment.html', {'form': form, 'item': item})
 
 
 @login_required
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
 
-    if request.user == comment.author:
+    if request.user.is_admin or request.user == comment.author:
         comment.delete()
 
     return redirect('item_detail', name=comment.item.name)
