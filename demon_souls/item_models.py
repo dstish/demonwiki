@@ -2,8 +2,6 @@ from django.contrib.auth import get_user_model
 from django.db import models
 import os
 
-from demon_souls.models import CustomUser
-
 
 def get_image_upload_path(instance, filename):
     category = instance.category
@@ -37,7 +35,7 @@ class Item(models.Model):
 class Comment(models.Model):
     item = models.ForeignKey(
         Item, on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
