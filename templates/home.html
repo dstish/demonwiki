@@ -11,7 +11,7 @@
 <header>
   <nav>
     <ul>
-        {% if user.is_authenticated %}
+        
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
             <li><a href="{% url 'armor_category' %}">Armor</a></li>
@@ -20,7 +20,7 @@
             <li><a href="{% url 'character_category' %}">Characters</a></li>
             <li><a href="{% url 'boss_category' %}">Bosses</a></li>
             <li><a href="{% url 'location_category' %}">Locations</a></li>
-      {% endif %}
+      
     </ul>
   </nav>
   {% if user.is_authenticated %}

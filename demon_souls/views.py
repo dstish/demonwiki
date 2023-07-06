@@ -36,7 +36,6 @@ def user_login(request):
     return render(request, 'login.html', {'form': form})
 
 
-@login_required(login_url='/login/')
 def home(request):
     if request.method == 'POST':
         logout(request)
@@ -52,7 +51,7 @@ def create_item(request):
             item = form.save(commit=False)
             item.author = request.user
             item.save()
-            return redirect('item_detail', item_id=item.item_id)
+            return redirect('item_detail', name=item.name)
     else:
         form = ItemForm()
 
@@ -62,13 +61,27 @@ def create_item(request):
 @login_required
 def add_comment(request, item_id):
     if request.method == 'POST':
-        text = request.POST['text']
-        item = Item.objects.get(pk=item_id)
-        author = request.user
-        comment = Comment.objects.create(item=item, author=author, text=text)
-        return redirect('item_detail', item_id=item_id)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.item = Item.objects.get(pk=item_id)
+            comment.author = request.user
+            comment.save()
+            return redirect('item_detail', name=comment.item.name)
     else:
-        return redirect('item_detail', item_id=item_id)
+        form = CommentForm()
+
+    return redirect('item_detail', name=comment.item.name)
+
+
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    if request.user == comment.author:
+        comment.delete()
+
+    return redirect('item_detail', name=comment.item.name)
 
 
 @login_required
