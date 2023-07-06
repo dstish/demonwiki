@@ -23,7 +23,7 @@ urlpatterns = [
     path('category/boss/', views.category_view_factory('boss'), name='boss_category'),
     path('category/location/', views.category_view_factory('location'),
          name='location_category'),
-    path('item_detail/<int:item_id>/', views.item_detail, name='item_detail'),
+    path('item_detail/<str:name>/', views.item_detail, name='item_detail'),
     path('add_comment/<int:item_id>/', views.add_comment, name='add_comment')
 ]
 

@@ -71,8 +71,8 @@ def add_comment(request, item_id):
         return redirect('item_detail', item_id=item_id)
 
 
-def item_detail(request, item_id):
-    item = Item.objects.get(item_id=item_id)
+def item_detail(request, name):
+    item = Item.objects.get(name=name)
     author_username = item.author.username if item.author else None
 
     if request.method == 'POST' and request.user.is_authenticated:
@@ -82,7 +82,7 @@ def item_detail(request, item_id):
             comment.item = item
             comment.author = request.user
             comment.save()
-            return redirect('item_detail', item_id=item.item_id)
+            return redirect('item_detail', name=item.name)
     else:
         form = CommentForm()
 
