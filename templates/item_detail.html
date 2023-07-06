@@ -59,6 +59,15 @@
         <img src="{{ item.image.url }}" alt="{{ item.name }}">
       </div>
     </div>
+    {% if user.is_authenticated %}
+      {% if user.is_admin or user == item.author %}
+        <form method="POST" action="{% url 'delete_item' item_id=item.item_id %}">
+          {% csrf_token %}
+        <button type="submit" class="delete-item-button">Delete</button>
+        </form>
+      {% endif %}
+    {% endif %}
+    
 
     <div class="comments">
       <h2>Comments</h2>
