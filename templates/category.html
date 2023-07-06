@@ -28,90 +28,19 @@
          <a class="logout-bt" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
    </div>
 {% else %}
-   <li><a href="{% url 'login' %}">Login</a></li>
-   <li><a href="{% url 'register' %}">Register</a></li>
+   <div class="log">
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'register' %}">Register</a>
+   </div>
 {% endif %}
   </header>
   <h1>{{ category|capfirst }} Category</h1>
   <main class="main">
     {% for item in items %}
       <div class="list-item">
-        <a href="#" class="item-link">
+        <a href="{% url 'item_detail' item_id=item.item_id %}" class="item-link">
           <div class="image-container">
-            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
-          </div>
-          <h3>{{ item.name }}</h3>
-        </a>
-      </div>
-
-      <div class="list-item">
-        <a href="#" class="item-link">
-          <div class="image-container">
-            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
-          </div>
-          <h3>{{ item.name }}</h3>
-        </a>
-      </div>
-      <div class="list-item">
-        <a href="#" class="item-link">
-          <div class="image-container">
-            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
-          </div>
-          <h3>{{ item.name }}</h3>
-        </a>
-      </div>
-      <div class="list-item">
-        <a href="#" class="item-link">
-          <div class="image-container">
-            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
-          </div>
-          <h3>{{ item.name }}</h3>
-        </a>
-      </div>
-      <div class="list-item">
-        <a href="#" class="item-link">
-          <div class="image-container">
-            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
-          </div>
-          <h3>{{ item.name }}</h3>
-        </a>
-      </div>
-      <div class="list-item">
-        <a href="#" class="item-link">
-          <div class="image-container">
-            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
-          </div>
-          <h3>{{ item.name }}</h3>
-        </a>
-      </div>
-      <div class="list-item">
-        <a href="#" class="item-link">
-          <div class="image-container">
-            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
-          </div>
-          <h3>{{ item.name }}</h3>
-        </a>
-      </div>
-      <div class="list-item">
-        <a href="#" class="item-link">
-          <div class="image-container">
-            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
-          </div>
-          <h3>{{ item.name }}</h3>
-        </a>
-      </div>
-      <div class="list-item">
-        <a href="#" class="item-link">
-          <div class="image-container">
-            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
-          </div>
-          <h3>{{ item.name }}</h3>
-        </a>
-      </div>
-      <div class="list-item">
-        <a href="#" class="item-link">
-          <div class="image-container">
-            <img src="https://petshop-vrn.ru/wp-content/uploads/6/e/1/6e13ae662e0ec347bae6c3b3f54159db.jpeg" alt="{{ item.name }}" class="image-item">
+            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="image-item">
           </div>
           <h3>{{ item.name }}</h3>
         </a>
