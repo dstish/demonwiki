@@ -110,8 +110,10 @@ footer {
 }
 
 a {
-  color: inherit; /* Use the parent's color or specify a custom color */
-  text-decoration: none; /* Remove underline */
+  color: inherit;
+  /* Use the parent's color or specify a custom color */
+  text-decoration: none;
+  /* Remove underline */
 }
 
 .item-image.big-image {
