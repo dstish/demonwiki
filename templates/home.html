@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="RU">
 <head>
@@ -11,7 +10,7 @@
 <header>
   <nav>
     <ul>
-        {% if user.is_authenticated %}
+
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
             <li><a href="{% url 'armor_category' %}">Armor</a></li>
@@ -20,7 +19,7 @@
             <li><a href="{% url 'character_category' %}">Characters</a></li>
             <li><a href="{% url 'boss_category' %}">Bosses</a></li>
             <li><a href="{% url 'location_category' %}">Locations</a></li>
-      {% endif %}
+
     </ul>
   </nav>
   {% if user.is_authenticated %}
@@ -29,7 +28,7 @@
          <p class="user-greeting"><i class="fas fa-user"></i> Hello, {{ user.username }}!</p>
          <a class="logout-bt" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
    </div>
-{% else %}
+   {% else %}
    <div class="log">
     <a href="{% url 'login' %}">Login</a>
     <a href="{% url 'register' %}">Register</a>
@@ -37,8 +36,6 @@
 {% endif %}
 
 </header>
-
-
 <main>
   <h1>Welcome to the Demon's Souls Fandom Wiki!</h1>
   
@@ -48,7 +45,6 @@
     <P>Страница юзера с его комментами и статьями (опционально)</P>
   
 </main>
-
 <footer>
   <p>&copy; 2023 Demon's Souls Fandom Wiki. All rights reserved. Created by Daniil Pokryshkin and Nikita Gromov</p>
 </footer>
