@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import CommentForm, RegistrationForm, LoginForm
 from django.contrib import messages
 from .item_models import Comment, Item
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from .forms import ItemForm
 
 
@@ -69,6 +69,16 @@ def add_comment(request, item_id):
         return redirect('item_detail', item_id=item_id)
     else:
         return redirect('item_detail', item_id=item_id)
+
+
+@login_required
+def delete_item(request, item_id):
+    item = get_object_or_404(Item, item_id=item_id)
+
+    if request.user.is_admin or request.user == item.author:
+        item.delete()
+
+    return redirect('home')
 
 
 def item_detail(request, item_id):

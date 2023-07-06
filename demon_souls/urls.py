@@ -24,6 +24,7 @@ urlpatterns = [
     path('category/location/', views.category_view_factory('location'),
          name='location_category'),
     path('item_detail/<int:item_id>/', views.item_detail, name='item_detail'),
+    path('item/delete/<int:item_id>/', views.delete_item, name='delete_item'),
     path('add_comment/<int:item_id>/', views.add_comment, name='add_comment')
 ]
 

@@ -4,6 +4,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 from django.contrib.auth.models import UserManager
 
+
 class CustomUserManager(UserManager):
     def create_user(self, username, password=None, **extra_fields):
         if not username:
@@ -21,7 +22,6 @@ class CustomUserManager(UserManager):
             raise ValueError('Superuser must have is_admin=True.')
 
         return self.create_user(username, password, **extra_fields)
-
 
 
 class CustomUser(AbstractBaseUser):
