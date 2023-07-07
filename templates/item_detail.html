@@ -60,7 +60,7 @@
       {% if user.is_admin or user == item.author %}
         <form method="POST" action="{% url 'delete_item' item_id=item.item_id %}">
           {% csrf_token %}
-        <button type="submit" class="delete-item-button">Delete</button>
+        <button type="submit" class="delete-item-button">Delete Article</button>
         </form>
       {% endif %}
     {% endif %}
@@ -78,15 +78,12 @@
                       {% csrf_token %}
                       <button type="submit">Ban User</button>
                   </form>
-                  <form method="POST" action="{% url 'delete_comment' comment_id=comment.id %}">
-                      {% csrf_token %}
-                      <button type="submit">Delete</button>
                   </form>
               {% endif %}
-              {% if user.is_authenticated and user == comment.author %}
+              {% if user.is_authenticated and user == comment.author or user.isadmin %}
                   <form method="POST" action="{% url 'delete_comment' comment_id=comment.id %}">
                       {% csrf_token %}
-                      <button type="submit">Delete</button>
+                      <button type="submit">Delete Comment</button>
                   </form>
               {% endif %}
           </div>

@@ -46,12 +46,13 @@ def home(request):
 def ban_user(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
 
-    if request.user.is_admin:
+    if request.user.is_admin and comment.author != request.user:
         comment.author.is_active = False
         comment.author.save()
         Comment.objects.filter(author=comment.author).delete()
 
     return redirect('item_detail', name=comment.item.name)
+
 
 
 @login_required
@@ -69,7 +70,7 @@ def create_item(request):
     else:
         form = ItemForm()
 
-    return render(request, 'create_item.html', {'form': form})
+    return render(request, 'item_create.html', {'form': form})
 
 
 @login_required

@@ -8,20 +8,18 @@
 </head>
 <body>
 <header>
-  <nav>
-    <ul>
-
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
-            <li><a href="{% url 'armor_category' %}">Armor</a></li>
-            <li><a href="{% url 'ring_category' %}">Rings</a></li>
-            <li><a href="{% url 'magic_category' %}">Magic</a></li>
-            <li><a href="{% url 'character_category' %}">Characters</a></li>
-            <li><a href="{% url 'boss_category' %}">Bosses</a></li>
-            <li><a href="{% url 'location_category' %}">Locations</a></li>
-
-    </ul>
-  </nav>
+<nav class="nav-container">
+  <ul>
+    <li><a href="{% url 'home' %}"><img src="{% static 'css/res/Demons_Souls_logo_black.svg.png' %}" alt="Demon Souls Logo"></a></li>
+    <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
+    <li><a href="{% url 'armor_category' %}">Armor</a></li>
+    <li><a href="{% url 'ring_category' %}">Rings</a></li>
+    <li><a href="{% url 'magic_category' %}">Magic</a></li>
+    <li><a href="{% url 'character_category' %}">Characters</a></li>
+    <li><a href="{% url 'boss_category' %}">Bosses</a></li>
+    <li><a href="{% url 'location_category' %}">Locations</a></li>
+  </ul>
+</nav>
   {% if user.is_authenticated %}
    <div class="user-info">
          <a href="{% url 'create_item' %}"><i class="fas fa-edit"></i> Create </a>
@@ -38,12 +36,7 @@
 </header>
 <main>
   <h1>Welcome to the Demon's Souls Fandom Wiki!</h1>
-  
-    <h3>TO DO</h3>
-    <P>добавить бан пользователей (админ права)</P>
-    <P>добавить поиск по сайту (опцианально)</P>
-    <P>Страница юзера с его комментами и статьями (опционально)</P>
-  
+
 </main>
 <footer>
   <p>&copy; 2023 Demon's Souls Fandom Wiki. All rights reserved. Created by Daniil Pokryshkin and Nikita Gromov</p>

@@ -88,3 +88,20 @@ a {
 .user-info a {
   margin-right: 20px;
 }
+
+
+nav ul li:first-child a img {
+  width: 125px; /* Настройте ширину по вашему выбору */
+  height: 50px; /* Настройте высоту по вашему выбору */
+  margin-right: 10px;
+}
+
+.nav-container ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-container ul li:first-child {
+  align-self: flex-start;
+}

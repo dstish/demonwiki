@@ -80,20 +80,9 @@ footer {
 
 a {
   color: inherit;
-  /* Use the parent's color or specify a custom color */
   text-decoration: none;
-  /* Remove underline */
 }
 
-.main {
-  flex: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 20px;
-  /* Отступ между карточками */
-  grid-auto-rows: 1fr;
-  /* Задаем равный вертикальный отступ */
-}
 
 .list-item {
   width: 150px;
@@ -105,11 +94,22 @@ a {
   /* Выравнивание элементов в начале столбца */
 }
 
+.main {
+  flex: none;
+  display: grid;
+  grid-template-rows: repeat(auto-fill, minmax(200px, 1fr)); /* Rows become auto-fill */
+  grid-gap: 20px;
+  grid-auto-columns: minmax(0, 1fr); /* Columns become auto-fill */
+}
+
+
+
+
+
 .image-container {
   display: flex;
   justify-content: center;
   flex-grow: 1;
-  /* Захват оставшегося пространства */
 }
 
 .item-link {
@@ -142,4 +142,21 @@ a {
   position: absolute;
   top: 50%;
   right: 43%;
+}
+
+nav ul li:first-child a img {
+  width: 125px; /* Настройте ширину по вашему выбору */
+  height: 50px; /* Настройте высоту по вашему выбору */
+  margin-right: 10px;
+  scale: 1;
+}
+
+.nav-container ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-container ul li:first-child {
+  align-self: flex-start;
 }
