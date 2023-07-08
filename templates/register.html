@@ -1,26 +1,32 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="RU">
-<head>
-  <title>Fandom Wiki on Demon's Souls</title>
+
+{% block title %}
+  Fandom Wiki on Demon's Souls
+{% endblock %}
+
+{% block additional_css %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/login_reg_styles.css' %}">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-   </style>
-</head>
-<body>
-  <div class="register-container">
-    <form method="post" class="register-form">
-      <h2>Registration</h2>
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="register-button">Register</button>
-      <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
-    </form>
-  </div>
-</body>
-</html>
+{% endblock %}
+
+{% block style %}
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+{% endblock %}
+
+{% block content %}
+  <body>
+    <div class="register-container">
+      <form method="post" class="register-form">
+        <h2>Registration</h2>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="register-button">Register</button>
+        <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+      </form>
+    </div>
+  </body>
+{% endblock %}

@@ -1,46 +1,25 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Fandom Wiki on Demon's Souls - {{ category }} Category</title>
+
+{% block title %}
+  Fandom Wiki on Demon's Souls - {{ category }} Category
+{% endblock %}
+
+
+{% block additional_css %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/home2.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
-<body>
-  <header>
-<nav class="nav-container">
-  <ul>
-    <li><a href="{% url 'home' %}"><img src="{% static 'css/res/Demons_Souls_logo_black.svg.png' %}" alt="Demon Souls Logo"></a></li>
-    <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
-    <li><a href="{% url 'armor_category' %}">Armor</a></li>
-    <li><a href="{% url 'ring_category' %}">Rings</a></li>
-    <li><a href="{% url 'magic_category' %}">Magic</a></li>
-    <li><a href="{% url 'character_category' %}">Characters</a></li>
-    <li><a href="{% url 'boss_category' %}">Bosses</a></li>
-    <li><a href="{% url 'location_category' %}">Locations</a></li>
-  </ul>
-</nav>
+{% endblock %}
 
-  {% if user.is_authenticated %}
-   <div class="user-info">
-         <a href="{% url 'create_item' %}"><i class="fas fa-edit"></i> Create </a>
-         <p class="user-greeting"><i class="fas fa-user"></i> Hello, {{ user.username }}!</p>
-         <a class="logout-bt" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
-   </div>
-   {% else %}
-   <div class="log">
-    <a href="{% url 'login' %}">Login</a>
-    <a href="{% url 'register' %}">Register</a>
-   </div>
-{% endif %}
-  </header>
+{% block content %}
+  {% include 'header.html' %}
   <h1 class="title">{{ category|capfirst }} Category</h1>
   <main class="main">
     {% for item in items %}
       <div class="list-item">
         <a href="{% url 'item_detail' item_id=item.item_id %}" class="item-link">
         <div class="item">
-<img src="{{ item.image.url|default_if_none:'#' }}" alt="{{ item.name }}" {% if item.image %}class="item-image"{% endif %}>
+          <img src="{{ item.image.url|default_if_none:'#' }}" alt="{{ item.name }}" {% if item.image %}class="item-image"{% endif %}>
           <h3>{{ item.name }}</h3>
         </div>
       </a>
@@ -48,9 +27,4 @@
       <p class="not-items">No items available in this category.</p>
     {% endfor %}
   </main>
-
-  <footer>
-    <p>&copy; 2023 Demon's Souls Fandom Wiki. All rights reserved.</p>
-  </footer>
-</body>
-</html>
+{% endblock %}

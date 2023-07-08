@@ -1,153 +1,131 @@
+{% extends 'base.html' %}
 <!-- {% load static %} -->
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Fandom Wiki on Demon's Souls - Item Detail</title>
+{% block title %}
+  Fandom Wiki on Demon's Souls - Item Detail
+{% endblock %}
+
+{% block additional_css %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/item_detail.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <style>
-    html, body {
-      height: 100%;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
-  </style>
-</head>
-<body>
-<header>
-  <nav class="nav-container">
-    <ul>
-      {% if user.is_authenticated %}
-        <li><a href="{% url 'home' %}"><img src="{% static 'css/res/Demons_Souls_logo_black.svg.png' %}" alt="Demon Souls Logo"></a></li>
-        <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
-        <li><a href="{% url 'armor_category' %}">Armor</a></li>
-        <li><a href="{% url 'ring_category' %}">Rings</a></li>
-        <li><a href="{% url 'magic_category' %}">Magic</a></li>
-        <li><a href="{% url 'character_category' %}">Characters</a></li>
-        <li><a href="{% url 'boss_category' %}">Bosses</a></li>
-        <li><a href="{% url 'location_category' %}">Locations</a></li>
-      {% endif %}
-    </ul>
-  </nav>
-  {% if user.is_authenticated %}
-  <div class="user-info">
-    <a href="{% url 'create_item' %}"><i class="fas fa-edit"></i> Create </a>
-    <p class="user-greeting"><i class="fas fa-user"></i> Hello, {{ user.username }}!</p>
-    <a class="logout-bt" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
-  </div>
-  {% else %}
-    <ul>
-      <li><a href="{% url 'login' %}">Login</a></li>
-      <li><a href="{% url 'register' %}">Register</a></li>
-    </ul>
-  {% endif %}
-</header>
-<main>
-  <div class="container">
-<div class="item">
-  <div class="item-details">
-    <h1>{{ item.name }}</h1>
-     <p class="category"><strong>Category:</strong> {{ item.category }}</p>
-    <p class="author"><strong>Author:</strong> {{ author_username }}</p>
-    <p>{{ item.description | safe }}</p>
-  </div>
-<div class="item-image-container">
-  <div class="item-image">
-    <img src="{{ item.image.url }}" alt="{{ item.name }}">
-  </div>
-  {% if item.category == 'weapon' %}
-    <table class="item-table">
-      <tr>
-        <th>Damage</th>
-        <td>{{ item.damage }}</td>
-      </tr>
-      <tr>
-        <th>STR</th>
-        <td>{{ item.str }}</td>
-      </tr>
-      <tr>
-        <th>DEX</th>
-        <td>{{ item.dex }}</td>
-      </tr>
-      <tr>
-        <th>Attack Type</th>
-        <td>{{ item.attack_type }}</td>
-      </tr>
-    </table>
-  {% endif %}
-</div>
+{% endblock %}
 
+{% block style %}
+  html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+{% endblock %}
+
+{% block content %}
+  {% include 'header.html' %}
+  <main>
+    <div class="container">
+    <div class="item">
+      <div class="item-details">
+        <h1>{{ item.name }}</h1>
+        <p class="category"><strong>Category:</strong> {{ item.category }}</p>
+        <p class="author"><strong>Author:</strong> {{ author_username }}</p>
+        <p>{{ item.description | safe }}</p>
+      </div>
+    <div class="item-image-container">
+      <div class="item-image">
+        <img src="{{ item.image.url }}" alt="{{ item.name }}">
+      </div>
+      {% if item.category == 'weapon' %}
+        <table class="item-table">
+          <tr>
+            <th>Damage</th>
+            <td>{{ item.damage }}</td>
+          </tr>
+          <tr>
+            <th>STR</th>
+            <td>{{ item.str }}</td>
+          </tr>
+          <tr>
+            <th>DEX</th>
+            <td>{{ item.dex }}</td>
+          </tr>
+          <tr>
+            <th>Attack Type</th>
+            <td>{{ item.attack_type }}</td>
+          </tr>
+        </table>
+      {% endif %}
     </div>
-    {% if user.is_authenticated %}
-      {% if user.is_admin or user == item.author %}
-        <div class="button-container">
-        <form method="POST" action="{% url 'delete_item' item_id=item.item_id %}">
-          {% csrf_token %}
-          <button type="submit" class="delete-item-button">Delete Article</button>
-        </form>
+
         </div>
-          <div class="button-container">
-            <form method="GET" action="{% url 'edit_item' item_id=item.item_id %}">
-              <button type="submit" class="edit-item-button">Edit Article</button>
+        {% if user.is_authenticated %}
+          {% if user.is_admin or user == item.author %}
+            <div class="button-container">
+            <form method="POST" action="{% url 'delete_item' item_id=item.item_id %}">
+              {% csrf_token %}
+              <button type="submit" class="delete-item-button">Delete Article</button>
             </form>
-          </div>
+            </div>
+              <div class="button-container">
+                <form method="GET" action="{% url 'edit_item' item_id=item.item_id %}">
+                  <button type="submit" class="edit-item-button">Edit Article</button>
+                </form>
+              </div>
+            {% endif %}
         {% endif %}
-    {% endif %}
-    
-    <div class="comments">
-      <h2>Comments</h2>
-      <ul>
-        {% for comment in item.comments.all %}
-          <div class="comment-info">
-              <span class="comment-author">{{ comment.author.username }}</span>
-              <span class="comment-date">{{ comment.created_at }}</span>
-              <p class="comment-text">{{ comment.text }}</p>
-              {% if user.is_authenticated and user.is_admin %}
-                  <div class="comments-actions">
-                  <form method="POST" action="{% url 'ban_user' comment_id=comment.id %}">
-                      {% csrf_token %}
-                      <button type="submit" class="ban-btt">Ban User</button>
-                  </form>
-                  </div>
-              {% endif %}
-              {% if user.is_authenticated and user == comment.author or user.isadmin %}
-                  <div class="comments-actions">
-                  <form method="POST" action="{% url 'delete_comment' comment_id=comment.id %}">
-                      {% csrf_token %}
-                      <button type="submit" class="delete-comment">Delete Comment</button>
-                  </form>
-                  </div>
-              {% endif %}
-          </div>
-      {% empty %}
-          <p>No comments yet.</p>
-      {% endfor %}
-      </ul>    
-      {% if user.is_authenticated %}
-          {% if user.is_active %}
-              <form method="POST" action="{% url 'add_comment' item_id=item.item_id %}">
-              <div class="comment-form">
-                  {% csrf_token %}
-                  {{ form.as_p }}
+        
+        <div class="comments">
+          <h2>Comments</h2>
+          <ul>
+            {% for comment in item.comments.all %}
+              <div class="comment-info">
+                  <span class="comment-author">{{ comment.author.username }}</span>
+                  <span class="comment-date">{{ comment.created_at }}</span>
+                  <p class="comment-text">{{ comment.text }}</p>
+                  {% if user.is_authenticated and user.is_admin %}
+                      <div class="comments-actions">
+                      <form method="POST" action="{% url 'ban_user' comment_id=comment.id %}">
+                          {% csrf_token %}
+                          <button type="submit" class="ban-btt">Ban User</button>
+                      </form>
+                      </div>
+                  {% endif %}
+                  {% if user.is_authenticated and user == comment.author or user.isadmin %}
+                      <div class="comments-actions">
+                      <form method="POST" action="{% url 'delete_comment' comment_id=comment.id %}">
+                          {% csrf_token %}
+                          <button type="submit" class="delete-comment">Delete Comment</button>
+                      </form>
+                      </div>
+                  {% endif %}
               </div>
-                  <button type="submit", class="submit-comment">Submit</button>
-              </form>
+          {% empty %}
+              <p>No comments yet.</p>
+          {% endfor %}
+          </ul>    
+          {% if user.is_authenticated %}
+              {% if user.is_active %}
+                  <form method="POST" action="{% url 'add_comment' item_id=item.item_id %}">
+                  <div class="comment-form">
+                      {% csrf_token %}
+                      {{ form.as_p }}
+                  </div>
+                      <button type="submit", class="submit-comment">Submit</button>
+                  </form>
+              {% endif %}
+          {% else %}
+              <p>Please <a href="{% url 'login' %}">login</a> to leave a comment.</p>
           {% endif %}
-      {% else %}
-          <p>Please <a href="{% url 'login' %}">login</a> to leave a comment.</p>
-      {% endif %}
 
-      {% if user.is_authenticated %}
-          {% if user.is_active %}
-              <div class="user-info">
-              </div>
+          {% if user.is_authenticated %}
+              {% if user.is_active %}
+                  <div class="user-info">
+                  </div>
+              {% endif %}
+          {% else %}
+              <li><a href="{% url 'login' %}">Login</a></li>
+              <li><a href="{% url 'register' %}">Register</a></li>
           {% endif %}
-      {% else %}
-          <li><a href="{% url 'login' %}">Login</a></li>
-          <li><a href="{% url 'register' %}">Register</a></li>
-      {% endif %}
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-</main>
+  </main>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% load static %}
+<header>
+    <nav class="nav-container">
+      <ul>
+        <li><a href="{% url 'home' %}"><img src="{% static 'css/res/Demons_Souls_logo_black.svg.png' %}" alt="Demon Souls Logo"></a></li>
+        <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
+        <li><a href="{% url 'armor_category' %}">Armor</a></li>
+        <li><a href="{% url 'ring_category' %}">Rings</a></li>
+        <li><a href="{% url 'magic_category' %}">Magic</a></li>
+        <li><a href="{% url 'character_category' %}">Characters</a></li>
+        <li><a href="{% url 'boss_category' %}">Bosses</a></li>
+        <li><a href="{% url 'location_category' %}">Locations</a></li>
+      </ul>
+    </nav>
+    {% if user.is_authenticated %}
+     <div class="user-info">
+           <a href="{% url 'create_item' %}"><i class="fas fa-edit"></i> Create </a>
+           <p class="user-greeting"><i class="fas fa-user"></i> Hello, {{ user.username }}!</p>
+           <a class="logout-bt" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+     </div>
+     {% else %}
+     <div class="log">
+      <a href="{% url 'login' %}">Login</a>
+      <a href="{% url 'register' %}">Register</a>
+     </div>
+    {% endif %}
+</header>

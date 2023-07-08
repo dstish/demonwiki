@@ -2,22 +2,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Fandom Wiki on Demon's Souls</title>
+  <title>
+    {% block title %}
+    {% endblock %}
+  </title>
   <link rel="stylesheet" type="text/css" href="{% static 'css/login_reg_styles.css' %}">
+  {% block additional_css %}
+  {% endblock %}
+  <style>
+    footer {
+      background-color: #f0f0f0;
+      padding: 10px;
+      text-align: center;
+      font-size: 12px;
+      color: #888;
+      margin-top: auto;
+    }
+    {% block style %}
+    {% endblock %}  
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Fandom Wiki on Demon's Souls</h1>
-    <!-- Здесь вы можете добавить логотип, навигацию или другие элементы шапки -->
-  </header>
-
   <div id="content">
     {% block content %}
     {% endblock %}
   </div>
-
   <footer>
-    <!-- Здесь вы можете добавить футер сайта с информацией об авторских правах и другими деталями -->
+    <p>&copy; 2023 Demon's Souls Fandom Wiki. All rights reserved.</p>
   </footer>
+  {% block script %}
+  {% endblock %}
 </body>
 </html>
