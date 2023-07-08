@@ -4,51 +4,61 @@
 <head>
   <title>Fandom Wiki on Demon's Souls</title>
   <link rel="stylesheet" type="text/css" href="{% static 'css/create_item.css' %}">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
     }
-   </style>
+  </style>
 </head>
 <body>
 <header>
-<nav class="nav-container">
-  <ul>
-    <li><a href="{% url 'home' %}"><img src="{% static 'css/res/Demons_Souls_logo_black.svg.png' %}" alt="Demon Souls Logo"></a></li>
-    <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
-    <li><a href="{% url 'armor_category' %}">Armor</a></li>
-    <li><a href="{% url 'ring_category' %}">Rings</a></li>
-    <li><a href="{% url 'magic_category' %}">Magic</a></li>
-    <li><a href="{% url 'character_category' %}">Characters</a></li>
-    <li><a href="{% url 'boss_category' %}">Bosses</a></li>
-    <li><a href="{% url 'location_category' %}">Locations</a></li>
-  </ul>
-</nav>
+  <nav class="nav-container">
+    <ul>
+      <li><a href="{% url 'home' %}"><img src="{% static 'css/res/Demons_Souls_logo_black.svg.png' %}" alt="Demon Souls Logo"></a></li>
+      <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
+      <li><a href="{% url 'armor_category' %}">Armor</a></li>
+      <li><a href="{% url 'ring_category' %}">Rings</a></li>
+      <li><a href="{% url 'magic_category' %}">Magic</a></li>
+      <li><a href="{% url 'character_category' %}">Characters</a></li>
+      <li><a href="{% url 'boss_category' %}">Bosses</a></li>
+      <li><a href="{% url 'location_category' %}">Locations</a></li>
+    </ul>
+  </nav>
   {% if user.is_authenticated %}
-   <div class="user-info">
-         <a href="{% url 'create_item' %}"><i class="fas fa-edit"></i> Create </a>
-         <p class="user-greeting"><i class="fas fa-user"></i> Hello, {{ user.username }}!</p>
-         <a class="logout-bt" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
-   </div>
-{% else %}
-   <li><a href="{% url 'login' %}">Login</a></li>
-   <li><a href="{% url 'register' %}">Register</a></li>
-{% endif %}
+  <div class="user-info">
+    <a href="{% url 'create_item' %}"><i class="fas fa-edit"></i> Create </a>
+    <p class="user-greeting"><i class="fas fa-user"></i> Hello, {{ user.username }}!</p>
+    <a class="logout-bt" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+  {% else %}
+  <ul>
+    <li><a href="{% url 'login' %}">Login</a></li>
+    <li><a href="{% url 'register' %}">Register</a></li>
+  </ul>
+  {% endif %}
 </header>
 
-  <div class="create-item-container">
-    <div class="create-item-form">
-      <h1>Create Item</h1>
-      <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {{ form.media }}
-        <button type="submit" class="create-item-button">Create</button>
-      </form>
-    </div>
+<div class="create-item-container">
+  <div class="create-item-form">
+    <h1>Create Item</h1>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="hidden" name="item_id" id="item-id-input">
+      {{ form.as_p }}
+      {{ form.media }}
+      <button type="submit" class="create-item-button">Create</button>
+    </form>
   </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('item-id-input').value = {{ item.item_id }};
+  });
+</script>
+<script src="{% static 'script.js' %}"></script>
 </body>
 </html>

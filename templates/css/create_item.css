@@ -3,6 +3,7 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
+
 header {
   background-color: #3f51b5;
   padding: 10px;
@@ -44,8 +45,8 @@ nav ul li a {
 }
 
 a {
-  color: inherit; /* Use the parent's color or specify a custom color */
-  text-decoration: none; /* Remove underline */
+  color: inherit;
+  text-decoration: none;
 }
 
 .create-item-container {
@@ -55,13 +56,15 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .create-item-form {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 20px;
   border-radius: 5px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .create-item-button {
@@ -76,6 +79,20 @@ a {
 input[type="text"],
 textarea {
   font-size: 16px;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  background-color: #3f51b5;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 a {
@@ -89,10 +106,9 @@ a {
   margin-right: 20px;
 }
 
-
 nav ul li:first-child a img {
-  width: 125px; /* Настройте ширину по вашему выбору */
-  height: 50px; /* Настройте высоту по вашему выбору */
+  width: 125px; /* Set the width as per your preference */
+  height: 50px; /* Set the height as per your preference */
   margin-right: 10px;
 }
 
@@ -104,4 +120,57 @@ nav ul li:first-child a img {
 
 .nav-container ul li:first-child {
   align-self: flex-start;
+}
+
+/* CKEditorWidget Styles */
+.ck-editor-widget {
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Custom Input Field Styles */
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: "\f078";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.select-wrapper select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 30px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.numeric-input-wrapper input[type="number"] {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+/* Additional Input Field Styles */
+.category-input-wrapper,
+.damage-input-wrapper,
+.str-input-wrapper,
+.dex-input-wrapper,
+.attack-type-input-wrapper {
+  margin-bottom: 10px;
 }

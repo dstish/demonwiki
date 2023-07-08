@@ -5,21 +5,64 @@
   <title>Wiki Demon's Souls - Home</title>
   <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .floatleft {
+      float: left;
+      margin-right: 10px;
+    }
+
+
+    .video-grid iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    .description-text {
+      overflow: auto;
+    }
+
+    .header {
+      padding: 20px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      margin: 0;
+      color: black;
+    }
+
+    h2 {
+        font-size: 24px;
+        margin: 0;
+        color: black;
+        padding: 20px;
+        text-align: center;
+    }
+  </style>
 </head>
 <body>
 <header>
-<nav class="nav-container">
-  <ul>
-    <li><a href="{% url 'home' %}"><img src="{% static 'css/res/Demons_Souls_logo_black.svg.png' %}" alt="Demon Souls Logo"></a></li>
-    <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
-    <li><a href="{% url 'armor_category' %}">Armor</a></li>
-    <li><a href="{% url 'ring_category' %}">Rings</a></li>
-    <li><a href="{% url 'magic_category' %}">Magic</a></li>
-    <li><a href="{% url 'character_category' %}">Characters</a></li>
-    <li><a href="{% url 'boss_category' %}">Bosses</a></li>
-    <li><a href="{% url 'location_category' %}">Locations</a></li>
-  </ul>
-</nav>
+  <nav class="nav-container">
+    <ul>
+      <li><a href="{% url 'home' %}"><img src="{% static 'css/res/Demons_Souls_logo_black.svg.png' %}" alt="Demon Souls Logo"></a></li>
+      <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
+      <li><a href="{% url 'armor_category' %}">Armor</a></li>
+      <li><a href="{% url 'ring_category' %}">Rings</a></li>
+      <li><a href="{% url 'magic_category' %}">Magic</a></li>
+      <li><a href="{% url 'character_category' %}">Characters</a></li>
+      <li><a href="{% url 'boss_category' %}">Bosses</a></li>
+      <li><a href="{% url 'location_category' %}">Locations</a></li>
+    </ul>
+  </nav>
   {% if user.is_authenticated %}
    <div class="user-info">
          <a href="{% url 'create_item' %}"><i class="fas fa-edit"></i> Create </a>
@@ -31,15 +74,71 @@
     <a href="{% url 'login' %}">Login</a>
     <a href="{% url 'register' %}">Register</a>
    </div>
-{% endif %}
-
+  {% endif %}
 </header>
 <main>
-  <h1>Welcome to the Demon's Souls Fandom Wiki!</h1>
+  <div class="content-wrapper">
+    <div class="header">
+      <h1>Welcome to Demon's Souls Wiki</h1>
+    </div>
+    <table style="width:100%; padding:10px;" class="MainpageBg">
+      <tbody>
+        <tr>
+          <td>
+            <div style="margin: 25px;">
+              <div class="floatleft">
+                <a href="/wiki/Demon%27s_Souls" title="Demon's Souls">
+                  <img alt="Demon's Souls Remake Cover" src="https://static.wikia.nocookie.net/demonssouls/images/6/66/Demon%27s_Souls_Remake_Cover.png/revision/latest/scale-to-width-down/200?cb=20200922190752" decoding="async" loading="lazy" width="200" height="255" data-image-name="Demon's Souls Remake Cover.png" data-image-key="Demon%27s_Souls_Remake_Cover.png" data-src="https://static.wikia.nocookie.net/demonssouls/images/6/66/Demon%27s_Souls_Remake_Cover.png/revision/latest/scale-to-width-down/200?cb=20200922190752" class="lazyloaded">
+                </a>
+              </div>
+<p>
+  The <b>Demon's Souls Wiki</b> is a collaborative encyclopedia about Demon's Souls.
+</p>
+<a href="https://store.playstation.com/en-us/product/UP9000-PPSA01342_00-DEMONSSOULS00000" class="buy-link">Buy Demon's Souls on PlayStation Store</a>
 
+              <p>
+                Demon's Souls is a critically acclaimed action role-playing game developed by FromSoftware and published by Sony Computer Entertainment. Originally released for the PlayStation 3 in 2009, it was later remade for the PlayStation 5 in 2020. The game is known for its challenging gameplay, atmospheric world, and innovative online multiplayer features.
+              </p>
+              <p>
+                Set in the kingdom of Boletaria, Demon's Souls takes place in a dark and desolate world that has been consumed by a powerful fog. The fog is a manifestation of the Old One, a malevolent entity that has awakened and unleashed demons upon the land. The player takes on the role of a hero who embarks on a quest to defeat these demons and save the kingdom.
+              </p>
+              <p>
+                One of the defining aspects of Demon's Souls is its difficulty. The game features punishing combat mechanics where players must carefully time their attacks, blocks, and dodges to overcome powerful enemies. Death is a common occurrence, and players are often faced with challenging and relentless adversaries that require strategic thinking and perseverance to overcome.
+              </p>
+              <p>
+                In addition to its challenging gameplay, Demon's Souls is also known for its interconnected world design. Players can freely explore the vast and treacherous kingdom of Boletaria, uncovering secrets, discovering hidden paths, and battling formidable bosses. Each area of the game offers unique environments, enemies, and challenges that test the player's skills and determination.
+              </p>
+              <p>
+                The 2020 remake of Demon's Souls for the PlayStation 5 brought the game to a new generation of players with enhanced visuals, improved performance, and reimagined character models. The remake showcased the power of the PlayStation 5 hardware, delivering stunning graphics and audio that further immersed players in the dark and foreboding world of Boletaria.
+              </p>
+            </div>
+            <div style="clear:both; margin:0; padding:0;"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<h2>Demon's Souls Trailers</h2>
+<div class="video-grid">
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/2TMs2E6cms4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/JiqGi3GMTko" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/C7NqSTQvRBw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/iQXBMiLSYJo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+  </div>
 </main>
 <footer>
   <p>&copy; 2023 Demon's Souls Fandom Wiki. All rights reserved. Created by Daniil Pokryshkin and Nikita Gromov</p>
 </footer>
 </body>
 </html>
+
+

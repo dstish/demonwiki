@@ -23,12 +23,14 @@ urlpatterns = [
     path('category/boss/', views.category_view_factory('boss'), name='boss_category'),
     path('category/location/', views.category_view_factory('location'),
          name='location_category'),
-    path('item_detail/<str:name>/', views.item_detail, name='item_detail'),
+    path('item_detail/<int:item_id>/', views.item_detail, name='item_detail'),
     path('item/delete/<int:item_id>/', views.delete_item, name='delete_item'),
     path('add_comment/<int:item_id>/', views.add_comment, name='add_comment'),
     path('delete_comment/<int:comment_id>/',
          views.delete_comment, name='delete_comment'),
     path('ban_user/<int:comment_id>/', views.ban_user, name='ban_user'),
+    path('item/<int:item_id>/edit/', views.edit_item, name='edit_item'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

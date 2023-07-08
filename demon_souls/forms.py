@@ -2,7 +2,9 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
 from .item_models import Item, Comment
-from tinymce.widgets import TinyMCE
+from ckeditor.widgets import CKEditorWidget
+
+
 
 
 class RegistrationForm(UserCreationForm):
@@ -18,12 +20,17 @@ class LoginForm(forms.Form):
 
 class ItemForm(forms.ModelForm):
     category = forms.ChoiceField(choices=Item.CATEGORIES)
-    description = forms.CharField(
-        widget=TinyMCE(attrs={'cols': 80, 'rows': 10}))
+    description = forms.CharField(widget=CKEditorWidget())
+    damage = forms.FloatField(required=False)
+    str = forms.IntegerField(required=False)
+    dex = forms.IntegerField(required=False)
+    attack_type = forms.ChoiceField(choices=Item.ATTACK_TYPE, required=False)
 
     class Meta:
         model = Item
-        fields = ['name', 'description', 'image', 'category']
+        fields = ['name', 'description', 'image', 'category', 'damage', 'str', 'dex', 'attack_type']
+
+
 
 
 class CommentForm(forms.ModelForm):

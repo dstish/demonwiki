@@ -51,7 +51,7 @@ def ban_user(request, comment_id):
         comment.author.save()
         Comment.objects.filter(author=comment.author).delete()
 
-    return redirect('item_detail', name=comment.item.name)
+    return redirect('item_detail', item_id=comment.item.item_id)
 
 
 
@@ -66,19 +66,18 @@ def create_item(request):
             item = form.save(commit=False)
             item.author = request.user
             item.save()
-            return redirect('home')
+            return redirect('item_detail', item_id=item.item_id)  # Redirect to item_detail page with the item_id
     else:
         form = ItemForm()
 
     return render(request, 'item_create.html', {'form': form})
-
 
 @login_required
 def add_comment(request, item_id):
     item = get_object_or_404(Item, item_id=item_id)
 
     if not request.user.is_active:
-        return redirect('item_detail', name=item.name)
+        return redirect('item_detail', name=item.item_id)
 
     if request.method == 'POST':
         form = CommentForm(request.POST)
@@ -87,11 +86,11 @@ def add_comment(request, item_id):
             comment.item = item
             comment.author = request.user
             comment.save()
-            return redirect('item_detail', name=item.name)
+            return redirect('item_detail', item_id=item.item_id)
     else:
         form = CommentForm()
 
-    return render(request, 'add_comment.html', {'form': form, 'item': item})
+    return render(request, 'item_detail.html', {'form': form, 'item': item})
 
 
 @login_required
@@ -101,7 +100,7 @@ def delete_comment(request, comment_id):
     if request.user.is_admin or request.user == comment.author:
         comment.delete()
 
-    return redirect('item_detail', name=comment.item.name)
+    return redirect('item_detail', item_id=comment.item.item_id)
 
 
 @login_required
@@ -112,8 +111,8 @@ def delete_item(request, item_id):
     return redirect('home')
 
 
-def item_detail(request, name):
-    item = Item.objects.get(name=name)
+def item_detail(request, item_id):
+    item = Item.objects.get(item_id=item_id)
     author_username = item.author.username if item.author else None
     if request.method == 'POST' and request.user.is_authenticated:
         form = CommentForm(request.POST)
@@ -122,7 +121,7 @@ def item_detail(request, name):
             comment.item = item
             comment.author = request.user
             comment.save()
-            return redirect('item_detail', name=item.name)
+            return redirect('item_detail', item_id=item.item_id)
     else:
         form = CommentForm()
     return render(request, 'item_detail.html', {'item': item, 'author_username': author_username, 'form': form})
@@ -133,3 +132,20 @@ def category_view_factory(category):
         items = Item.objects.filter(category=category)
         return render(request, 'category.html', {'items': items, 'category': category})
     return category_view
+
+
+def edit_item(request, item_id):
+    item = Item.objects.get(item_id=item_id)
+
+    if not request.user.is_authenticated or (not request.user.is_admin and request.user != item.author):
+        return redirect('item_detail', item_id=item.item_id)
+
+    if request.method == 'POST':
+        form = ItemForm(request.POST, request.FILES, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('item_detail', item_id=item.item_id)
+    else:
+        form = ItemForm(instance=item)
+
+    return render(request, 'item_create.html', {'form': form})
