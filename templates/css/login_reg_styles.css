@@ -73,6 +73,6 @@ textarea {
 }
 
 a {
-  color: inherit; /* Use the parent's color or specify a custom color */
+  color: blue; /* Use the parent's color or specify a custom color */
   text-decoration: none; /* Remove underline */
 }
