@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import CommentForm, RegistrationForm, LoginForm
 from django.contrib import messages
-from .item_models import Comment, Item
+from .article_models.item_models import Comment, Item
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import ItemForm
 

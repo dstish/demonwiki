@@ -1,9 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser
-from .item_models import Item, Comment
+from .user_models.models import CustomUser
+from .article_models.item_models import Item, Comment
 from ckeditor.widgets import CKEditorWidget
-
 
 
 

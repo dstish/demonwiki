@@ -18,7 +18,6 @@
 <header>
   <nav class="nav-container">
     <ul>
-      {% if user.is_authenticated %}
         <li><a href="{% url 'home' %}"><img src="{% static 'css/res/Demons_Souls_logo_black.svg.png' %}" alt="Demon Souls Logo"></a></li>
         <li><a href="{% url 'weapon_category' %}">Weapons</a></li>
         <li><a href="{% url 'armor_category' %}">Armor</a></li>
@@ -27,7 +26,6 @@
         <li><a href="{% url 'character_category' %}">Characters</a></li>
         <li><a href="{% url 'boss_category' %}">Bosses</a></li>
         <li><a href="{% url 'location_category' %}">Locations</a></li>
-      {% endif %}
     </ul>
   </nav>
   {% if user.is_authenticated %}
@@ -111,7 +109,7 @@
                   </form>
                   </div>
               {% endif %}
-              {% if user.is_authenticated and user == comment.author or user.isadmin %}
+              {% if user.is_authenticated and user == comment.author or user.is_admin %}
                   <div class="comments-actions">
                   <form method="POST" action="{% url 'delete_comment' comment_id=comment.id %}">
                       {% csrf_token %}

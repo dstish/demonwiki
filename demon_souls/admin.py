@@ -1,8 +1,7 @@
-from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser
+from .user_models.models import CustomUser
 from django.contrib import admin
-from .item_models import Comment, Item
+from .article_models.item_models import Comment, Item
 
 
 class ItemAdmin(admin.ModelAdmin):
