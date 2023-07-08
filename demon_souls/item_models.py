@@ -21,12 +21,6 @@ class Item(models.Model):
         ('location', 'Location'),
     ]
 
-    ATTACK_TYPE = [
-        ('standard', 'Standard'),
-        ('special', 'Special'),
-        ('magic', 'Magic'),
-    ]
-
     item_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -34,13 +28,34 @@ class Item(models.Model):
     image = models.ImageField(upload_to=get_image_upload_path)
     author = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
-    damage = models.FloatField(null=True, blank=True)
-    str = models.IntegerField(null=True, blank=True)
-    dex = models.IntegerField(null=True, blank=True)
-    attack_type = models.CharField(max_length=100, choices=ATTACK_TYPE, default='standard')
+
+    class Meta:
+        abstract = True
 
     def __str__(self):
         return self.name
+
+
+class Weapon(Item):
+    ATTACK_TYPE = [
+        ('standard', 'Standard'),
+        ('special', 'Special'),
+        ('magic', 'Magic'),
+    ]
+
+    damage = models.FloatField(null=True, blank=True)
+    str = models.IntegerField(null=True, blank=True)
+    dex = models.IntegerField(null=True, blank=True)
+    attack_type = models.CharField(
+        max_length=100, choices=ATTACK_TYPE, default='standard')
+
+
+class Armor(Item):
+    resist = models.IntegerField()
+
+
+class Boss(Item):
+    hp = models.IntegerField()
 
 
 class Comment(models.Model):
