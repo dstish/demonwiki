@@ -15,7 +15,7 @@ body {
 header {
   background-color: #3f51b5;
   padding: 10px;
-  color: #fff;
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,7 +29,7 @@ nav ul {
 
 nav ul li {
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 nav ul li a {
@@ -74,30 +74,48 @@ footer {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 20px;
   border-radius: 5px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-end; /* Aligns items to the start of the container */
+  justify-content: space-between;
 }
 
 .item {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #f5f5f5;
 }
 
 .item-details {
   flex: 1;
+  margin-right: 20px;
 }
 
 .item-details h1 {
-  text-transform: uppercase;
+  font-size: 24px;
+  color: #3f51b5;
+  margin-bottom: 10px;
 }
 
 .item-details p {
-  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.item-image {
+  flex: 1;
+  text-align: center;
 }
 
 .item-image img {
   max-width: 100%;
   height: auto;
-  margin-left: 20px;
+  border: 5px solid #ddd;
+  border-radius: 5px;
 }
 
 .logout-bt {
@@ -130,4 +148,317 @@ a {
 .user-info {
   display: flex;
   align-items: center;
+}
+
+
+.delete-item-button{
+  background-color: orangered; /* Change the button color */
+  color: #fff; /* Change the text color */
+  border: none; /* Remove the border */
+  padding: 10px 20px; /* Increase the size */
+  border-radius: 5px; /* Round the corners */
+  cursor: pointer; /* Change the cursor on hover */
+  font-size: 16px; /* Increase the font size */
+  margin-right: 10px;
+
+}
+
+.delete-comment {
+  background-color: #3f51b5; /* Change the button color */
+  color: #fff; /* Change the text color */
+  border: none; /* Remove the border */
+  padding: 5px 10px; /* Increase the size */
+  border-radius: 5px; /* Round the corners */
+  cursor: pointer; /* Change the cursor on hover */
+  font-size: 12px; /* Increase the font size */
+}
+
+.ban-btt {
+  background-color: orangered; /* Change the button color */
+  color: #fff; /* Change the text color */
+  border: none; /* Remove the border */
+  padding: 5px 10px; /* Increase the size */
+  border-radius: 5px; /* Round the corners */
+  cursor: pointer; /* Change the cursor on hover */
+  font-size: 12px; /* Increase the font size */
+  margin-bottom: 10px;
+}
+
+.delete-comment:hover {
+  background-color: #283593; /* Change the button color on hover */
+}
+
+.delete-item-button:hover {
+  background-color: red;
+}
+
+.ban-btt:hover {
+  background-color: red; /* Change the button color on hover */
+}
+
+.comments {
+  background-color: rgba(255, 255, 255, 1); /* Change the background color */
+  padding: 20px; /* Add some padding */
+  border-radius: 5px; /* Round the corners */
+  margin-top: 20px; /* Add some margin at the top */
+}
+
+.comments h2 {
+  color: #3f51b5; /* Change the color of the heading */
+  margin-bottom: 20px; /* Add some margin at the bottom */
+}
+
+.comment-info {
+  background-color: #f5f5f5; /* Change the background color */
+  padding: 20px; /* Add some padding */
+  border-radius: 5px; /* Round the corners */
+  margin-bottom: 10px; /* Add some margin at the bottom */
+}
+
+.comments-actions {
+  display: inline-block;
+  justify-content: flex-start;
+}
+
+.comment-actions form {
+  display: inline-block;
+  margin-left: 10px; /* Add some space between the buttons */
+}
+
+.comment-author {
+  font-weight: bold; /* Make the author's name bold */
+}
+
+.comment-date {
+  color: #888; /* Change the color of the date */
+  font-size: 14px; /* Decrease the font size */
+  margin-left: 10px; /* Add some margin on the left */
+}
+
+.comment-text {
+  margin-top: 10px; /* Add some margin at the top */
+}
+
+.submit-comment {
+  background-color: #3f51b5; /* Change the button color */
+  color: #fff; /* Change the text color */
+  border: none; /* Remove the border */
+  padding: 10px 15px; /* Increase the size */
+  border-radius: 5px; /* Round the corners */
+  cursor: pointer; /* Change the cursor on hover */
+  font-size: 14px; /* Increase the font size */
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.comment-form {
+  padding: 20px; /* Add some padding */
+  border-radius: 5px; /* Round the corners */
+}
+
+.comment-form input[type="text"],
+.comment-form textarea {
+  width: 100%; /* Make the input and textarea full width */
+  padding: 10px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a border */
+  border-radius: 5px; /* Round the corners */
+  margin-bottom: 10px; /* Add some margin at the bottom */
+  font-size: 16px;
+}
+
+.comment-form input[type="submit"] {
+  background-color: #3f51b5; /* Change the button color */
+  color: #fff; /* Change the text color */
+  border: none; /* Remove the border */
+  padding: 10px 20px; /* Increase the size */
+  border-radius: 5px; /* Round the corners */
+  cursor: pointer; /* Change the cursor on hover */
+  font-size: 16px; /* Increase the font size */
+}
+
+.comment-form input[type="submit"]:hover {
+  background-color: #283593; /* Change the button color on hover */
+}
+
+#id_text {
+  width: 100%; /* Make the textarea full width */
+  height: 100%;
+  max-height: 450px;
+  max-width: 1200px; /* Set a maximum width */
+  padding: 10px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a border */
+  border-radius: 5px; /* Round the corners */
+  margin-bottom: 10px; /* Add some margin at the bottom */
+}
+
+.comment-form label {
+  color: #3f51b5; /* Change the color of the label */
+  font-size: 14px; /* Increase the font size */
+  font-weight: bold; /* Make the label bold */
+  display: block;
+}
+
+nav ul li:first-child a img {
+  width: 125px; /* Настройте ширину по вашему выбору */
+  height: 50px; /* Настройте высоту по вашему выбору */
+  margin-right: 10px;
+  scale: 1;
+}
+
+.nav-container ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-container ul li:first-child {
+  align-self: flex-start;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: white;
+}
+
+.item-details {
+  flex: 1;
+  margin-right: 50px; /* Increase right margin */
+}
+
+.item-image-container {
+  align-items: flex-end; /
+  width: fit-content; /* Sets the width of the container to fit its content */
+  flex-shrink: 0; /* Prevents the container from shrinking */
+
+}
+
+.item-image {
+  text-align: center;
+}
+
+.item-image img {
+  max-width: 100%;
+  height: auto;
+  border: 5px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.item-characteristics table {
+  width: 100%;
+  max-width: 300px; /* Limit the maximum width of the table */
+  border-collapse: collapse;
+  margin: 0 auto; /* Center the table */
+}
+
+.item-characteristics th, .item-characteristics td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.item-characteristics th {
+  background-color: #3f51b5;
+  color: #fff;
+}
+
+.description-container {
+  flex: 1;
+  margin-right: 20px; /* adjust as per your requirements */
+}
+
+.image-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns items to the end of the container */
+}
+
+.image-container img, .image-container table {
+  width: 100%; /* Sets the width of the image and the table to be the same */
+}
+
+.category {
+  font-weight: bold;
+  color: #888;
+}
+
+.author {
+  font-weight: bold;
+  color: #888;
+}
+
+.item-details-table {
+  margin-top: 10px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.item-details-table th,
+.item-details-table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.item-details-table th {
+  background-color: #f2f2f2;
+}
+
+.item-details-table td {
+  font-weight: bold;
+}
+
+.item-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.item-table th, .item-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.item-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.item-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.item-table tr:hover {
+  background-color: #e6e6e6;
+}
+
+.edit-item-button {
+  background-color: #3f51b5;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.edit-item-button:hover {
+  color: #283593;
+}
+
+/*.button-container {*/
+/*  display: flex;*/
+/*  gap: 10px;*/
+/*  margin-top: 10px;*/
+/*}*/
+
+.button-container {
+  display: inline-block;
 }

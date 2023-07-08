@@ -3,7 +3,7 @@
 <html>
 <head>
   <title>Fandom Wiki on Demon's Souls - {{ category }} Category</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home2.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -38,9 +38,9 @@
   <main class="main">
     {% for item in items %}
       <div class="list-item">
-        <a href="{% url 'item_detail' name=item.name %}" class="item-link">
+        <a href="{% url 'item_detail' item_id=item.item_id %}" class="item-link">
         <div class="item">
-          <img src="{{ item.image.url }}" alt="{{ item.name }}">
+<img src="{{ item.image.url|default_if_none:'#' }}" alt="{{ item.name }}" {% if item.image %}class="item-image"{% endif %}>
           <h3>{{ item.name }}</h3>
         </div>
       </a>
